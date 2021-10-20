@@ -33,6 +33,15 @@
 </head>
 
 <body id="body" class="auth-page" style="background-image: url('assets/software_assets/images/p-1.png'); background-size: cover; background-position: center center;">
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
     <!-- Log In page -->
     <div class="container-md">
         <div class="row vh-100 d-flex justify-content-center">
@@ -51,7 +60,8 @@
                                     </div>
                                 </div>
                                 <div class="card-body pt-0">
-                                    <form class="my-4" action="https://mannatthemes.com/metrica/default/index.html">
+                                    <form class="my-4" method="post" action="{{url('register_user')}}" enctype="multipart/form-data">
+                                        @csrf
                                         <div class="form-group mb-2">
                                             <label class="form-label" for="username">Username</label>
                                             <input type="text" class="form-control" id="username" name="username" placeholder="Enter username">
@@ -60,25 +70,25 @@
 
                                         <div class="form-group mb-2">
                                             <label class="form-label" for="useremail">Email</label>
-                                            <input type="email" class="form-control" id="useremail" name="user email" placeholder="Enter email">
+                                            <input type="email" class="form-control" id="useremail" name="email" placeholder="Enter email">
                                         </div>
                                         <!--end form-group-->
 
                                         <div class="form-group mb-2">
                                             <label class="form-label" for="userpassword">Password</label>
-                                            <input type="password" class="form-control" name="password" id="userpassword" placeholder="Enter password">
+                                            <input type="password" class="form-control" name="password" id="password" placeholder="Enter password">
                                         </div>
                                         <!--end form-group-->
 
                                         <div class="form-group mb-2">
                                             <label class="form-label" for="Confirmpassword">ConfirmPassword</label>
-                                            <input type="password" class="form-control" name="password" id="Confirmpassword" placeholder="Enter Confirm password">
+                                            <input type="password" class="form-control" name="cpassword" id="Confirmpassword" placeholder="Enter Confirm password">
                                         </div>
                                         <!--end form-group-->
 
                                         <div class="form-group mb-2">
                                             <label class="form-label" for="mobileNo">Mobile Number</label>
-                                            <input type="text" class="form-control" id="mobileNo" name="mobile number" placeholder="Enter Mobile Number">
+                                            <input type="text" class="form-control" id="mobileNo" name="number" placeholder="Enter Mobile Number">
                                         </div>
                                         <!--end form-group-->
 
@@ -96,7 +106,7 @@
                                         <div class="form-group mb-0 row">
                                             <div class="col-12">
                                                 <div class="d-grid mt-3">
-                                                    <button class="btn btn-primary" type="button">Log In <i class="fas fa-sign-in-alt ms-1"></i></button>
+                                                    <button class="btn btn-primary" type="submit">Register <i class="fas fa-sign-in-alt ms-1"></i></button>
                                                 </div>
                                             </div>
                                             <!--end col-->
