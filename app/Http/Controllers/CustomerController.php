@@ -21,8 +21,8 @@ class CustomerController extends Controller
         if (!empty($direct_sponser)) {
             $sponser_id = $this->getSponser($direct_sponser->id, $data->position);
 
-            echo $sponser_id.'ddsd';
-            die;
+            // echo $sponser_id.'ddsd';
+            // die;
             $customer->username = $data->username;
             $customer->wallet_address = $data->wallet_address;
             $customer->active_status = $data->status;
@@ -32,7 +32,7 @@ class CustomerController extends Controller
             $customer->package_id = $data->package;
             $customer->save();
             session()->flash('message', 'Customer added successfully.');
-            return view('customers/index');
+            return redirect('customer_list');
         } else {
             session()->flash('error', 'Sponser id doesnt exists.');
             return redirect('customer_view');
@@ -50,9 +50,21 @@ class CustomerController extends Controller
             $direct_id = $sponser[0]['id'];
             $sponser = $this->getSponser($direct_id, $position);
         } else {
-            
-            echo $direct_id.' Crying </br>' ;
+            // echo $direct_id.' Crying </br>' ;
             return $direct_id;
         }
+        return $direct_id;
+    }
+
+    public function customer_list()
+    {
+        $data = companies::get();
+        return view('customers/index', ['customers' => $data]);
+    }
+
+    public function edit_view($id)
+    {
+        $customer = companies::where('id', $id)->first();
+        return view('packages/edit_package', ['data' => $customer]);
     }
 }

@@ -1,6 +1,6 @@
 @extends('layouts.sidebar');
 
-@section('title', 'Add Packages');
+@section('title', 'Edit Customer');
 
 @section('sidebar')
 @parent
@@ -19,28 +19,25 @@
             <div class="col-lg-6 mx-auto">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title text-center">Add Package</h4>
+                        <h4 class="card-title text-center">Edit Customer</h4>
                     </div>
                     <!--end card-header-->
                     <div class="card-body">
-                        <form id="form-validation-2" action="{{url('add_package')}}" class="form" method="post" enctype="multipart/form-data">
+                        <form id="form-validation-2" class="form" action="{{url('edit_customer',[$data->id])}}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="mb-2">
-                                <label for="name" class="mb-2">Package Name</label>
-                                <input class="form-control" type="text" id="name" name="name" placeholder="Enter Package Name">
+                                <label for="password2" class="mb-2">Wallet Address</label>
+                                <input class="form-control" type="text" id="wallet_address" name="wallet_address" placeholder="Enter Wallet Address" value="{{$data->wallet_address}}">
                                 <small>Error Message</small>
                             </div>
                             <div class="mb-2">
-                                <label for="amount" class="mb-2">Amount</label>
-                                <input class="form-control" type="number" id="amount" name="amount" min="0" placeholder="Enter Amount">
-                                <small>Error Message</small>
+                                <label for="password" class="mb-2">Status</label>
+                                <select name="status" id="status" class="form-control">
+                                    <option value="0">Active</option>
+                                    <option value="1">Inactive</option>
+                                </select>
                             </div>
-                            <div class="mb-2">
-                                <label for="currency" class="mb-2">Currency</label>
-                                <input class="form-control" type="text" id="currency" name="currency" placeholder="Enter Currency">
-                                <small>Error Message</small>
-                            </div>
-                            <button type="submit" class="btn btn-de-primary">Add Package</button>
+                            <button type="submit" class="btn btn-de-primary">Edit Customer</button>
                         </form>
                         <!--end form-->
                     </div>

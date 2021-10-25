@@ -48,10 +48,9 @@ Route::name('packages')->group(function () {
 
 //Customers Routes
 Route::name('customers')->group(function () {
-    Route::get('customer', function () {
-        return view('customers/index');
-    });
-
+    Route::get('customer_list', [CustomerController::class, 'customer_list']);
     Route::get('customer_view', [CustomerController::class, 'customer_view']);
     Route::post('add_customer', [CustomerController::class, 'add_customer']);
+    Route::get('edit_view/{id}', [CustomerController::class, 'edit_view']);
+    Route::post('edit_customer/{id}', [CustomerController::class, 'edit_customer']);
 });
