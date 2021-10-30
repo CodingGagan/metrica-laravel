@@ -56,7 +56,7 @@
                                             <td>{{$customer->wallet_address}}</td>
                                             <td>{{$customer->package_id}}</td>
                                             <td>{{$customer->created_at}}</td>
-                                            <td>
+                                            <td class="text-center">
                                                 <a href="{{url('edit_view', [$customer->id])}}" class="btn btn-info">Edit</a>
                                             </td>
                                         </tr>

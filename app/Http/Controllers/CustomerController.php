@@ -65,6 +65,19 @@ class CustomerController extends Controller
     public function edit_view($id)
     {
         $customer = companies::where('id', $id)->first();
-        return view('packages/edit_package', ['data' => $customer]);
+        return view('customers/edit_customer', ['data' => $customer]);
+    }
+
+    public function edit_customer(Request $data, $id)
+    {
+        $customer = companies::where('id', $id)->first();
+        $validated = $data->validate([
+            'wallet_address' => 'required',
+        ]);
+        $customer->wallet_address = $data->wallet_address;
+        $customer->active_status = $data->status;
+        $customer->save();
+        session()->flash('message', 'Customer details updated successfully.');
+        return redirect('customer_list');
     }
 }
